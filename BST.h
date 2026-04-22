@@ -34,6 +34,7 @@ private:
   void printhelp(BSTNode<Key, E>*, int) const;
   void visit(BSTNode<Key, E>*) const;
   void printPreOrderhelp(BSTNode<Key, E>*) const;
+  void printPostOrderhelp(BSTNode<Key, E>*) const;
 
 public:
   BST() { root = NULL; nodecount = 0; }  // Constructor
@@ -212,3 +213,14 @@ printPreOrderhelp(BSTNode<Key, E>* root) const {
   printPreOrderhelp(root->left());      // Do left subtree
   printPreOrderhelp(root->right());     // Do right subtree
 }
+
+//Print out a BST (post-order) -- NEW
+template <typename Key, typename E>
+void BST<Key, E>::
+printPostOrderhelp(BSTNode<Key, E>* root) const {
+  if (root == NULL) return;
+  printPreOrderhelp(root->left());
+  printPreOrderhelp(root->right()); 
+  visit(root);        
+}
+
